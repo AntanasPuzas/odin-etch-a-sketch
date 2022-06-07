@@ -1,9 +1,13 @@
+.row {
+    display: flex;
+}
+
 .square {
     border: solid; 
     height: 50px; 
     width: 50px
 }
 
-.row {
-    display: flex;
+.squareHover {
+    background-color: red;
 }
