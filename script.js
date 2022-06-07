@@ -1,4 +1,23 @@
 const grid = document.querySelector("#grid");
+const buttonGenerateNew = document.querySelector("#generate-grid");
+
+buttonGenerateNew.addEventListener("click", () => {
+    let userInput = prompt("Input a number between 1 and 100");
+    if (isNaN(userInput)) {
+        alert("Not a number");
+        return;
+    } else if (userInput > 100) {
+        alert("Number too high")
+        return;
+    } else if (userInput < 0) {
+        alert("Must be a positive number")
+        return;
+    } else {
+        removeRows();
+        generateTable(userInput);
+    }
+});
+
 const gridSize = 960;
 
 function generateTable(numberOfSquares) {
@@ -18,6 +37,12 @@ function generateTable(numberOfSquares) {
         grid.appendChild(divRow);
     }
 }
+
+function removeRows() {
+    const rows = document.querySelectorAll(".row");
+    rows.forEach(row => row.parentElement.removeChild(row));
+}
+
 
 generateTable(20);
 
