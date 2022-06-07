@@ -1,19 +1,23 @@
-const body = document.querySelector("body");
+const grid = document.querySelector("#grid");
 
-for (let i = 0; i < 16; i++) {
-    const divRow = document.createElement("div");
-    divRow.id = `row-${i}`;
-    divRow.classList.add("row");
-    for (let j = 0; j < 16; j++) {
-        const square = document.createElement("div");
-        square.id = `square-${i}-${j}`;
-        square.classList.add("square");
-
-        divRow.appendChild(square);
+function generateTable(numberOfSquares) {
+    for (let i = 0; i < numberOfSquares; i++) {
+        const divRow = document.createElement("div");
+        divRow.id = `row-${i}`;
+        divRow.classList.add("row");
+        for (let j = 0; j < numberOfSquares; j++) {
+            const square = document.createElement("div");
+            square.id = `square-${i}-${j}`;
+            square.classList.add("square");
+    
+            divRow.appendChild(square);
+        }
+        grid.appendChild(divRow);
     }
-    body.appendChild(divRow);
 }
+
+generateTable(10);
 
 const squares = document.querySelectorAll(".square");
 squares.forEach(square => square.addEventListener("mouseover", () =>
-    square.classList.add("squareHover")));
+    square.classList.add("squareMouseover")));
