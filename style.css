@@ -5,14 +5,22 @@ body {
     gap: 10px;
 }
 
+.grid {
+    display: flex;
+    max-width: 960px;
+    max-height: 960px;
+}
+
 .row {
     display: flex;
 }
 
 .square {
-    border: solid; 
-    height: 50px; 
-    width: 50px
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    border: solid;
+    border-width: 1px;
 }
 
 .squareMouseover {
