@@ -31,11 +31,24 @@ function generateTable(numberOfSquares) {
             square.classList.add("square");
             const squareSize = gridSize / numberOfSquares;
             square.style.cssText = `width: ${squareSize}px; height: 
-            ${squareSize}px`;
+            ${squareSize}px; filter: brightness(1)`;
             divRow.appendChild(square);
         }
         grid.appendChild(divRow);
     }
+    bindMouseover();
+}
+
+function bindMouseover() {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => square.addEventListener("mouseover", () => {
+        if (square.style.backgroundColor === "") {
+            square.style.backgroundColor = `${generateRandomRGBColor()}`;
+        } else {
+            square.style.filter = `brightness(
+                ${(square.style.filter.match((/([0-9]\.*[0-9]*)/))[0]) - 0.1})`;
+        }
+    }));
 }
 
 function removeRows() {
@@ -43,9 +56,12 @@ function removeRows() {
     rows.forEach(row => row.parentElement.removeChild(row));
 }
 
+generateTable(16);
 
-generateTable(20);
+function generateRandomNumber() {
+    return (Math.round((Math.random() * 255) + 0));
+}
 
-const squares = document.querySelectorAll(".square");
-squares.forEach(square => square.addEventListener("mouseover", () =>
-    square.classList.add("squareMouseover")));
+function generateRandomRGBColor() {
+    return `rgb(${generateRandomNumber()}, ${generateRandomNumber()}, ${generateRandomNumber()})`;
+}
